@@ -1,5 +1,6 @@
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from user.serializers import UserSerializer
@@ -9,6 +10,7 @@ from user.permissions import IsAdminOrIfAuthenticatedReadOnly
 
 class UserCreateView(generics.CreateAPIView):
     serializer_class = UserSerializer
+    permission_classes = (AllowAny,)
 
 
 class LoginView(ObtainAuthToken):
